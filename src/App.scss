@@ -1,0 +1,84 @@
+body {
+    color: #222;
+    background: #f4f4f4;
+    font: 400 14px CoreSans, Arial,sans-serif;
+}
+*{
+    box-sizing: border-box;
+}
+a {
+    color: #222;
+}
+a:hover {
+    text-decoration: underline;
+}
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+input {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #dddddd;
+}
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    background: transparent;
+    color: #808080;
+    cursor: pointer;
+}
+button:hover {
+    color: #222;
+}
+*:focus {
+    outline: none;
+}
+.page {
+    margin: 20px;
+}
+.list__container{
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.list__container header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+.add__item{
+    width: 100%;
+}
+.add__item input{
+    width: 100%;
+    margin: 15px 0;
+    border-radius: 15px;
+    text-align: center;
+}
+.todos__box{
+    width: 100%;
+    .todos__header{
+        display: flex;
+        justify-content: space-between;
+    }
+    &-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .box_action{
+            .complete{
+                background: green;
+                color: #fff;
+            }
+            .delete{
+                color: #fff;
+                background: red;
+            }
+        }
+    }
+}
