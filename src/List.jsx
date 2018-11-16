@@ -7,13 +7,17 @@ class List extends Component{
             title:"List",
             valueSearchInput: '',
             valueAddInput: '',
-            INITIAL_DATA: []
+            INITIAL_DATA: ['tima', 'vasia']
         };
 
         this.onChange = this.onChange.bind(this);
         this.onChangeAddItemValue = this.onChangeAddItemValue.bind(this);
         this.keyPress = this.keyPress.bind(this);
-        this.onDelete = this.onDelete.bind(this)
+        this.onDelete = this.onDelete.bind(this);
+        this.completeItem = this.completeItem.bind(this)
+    }
+    completeItem(item){
+        console.log(item)
     }
 
     onChange(event){
@@ -33,7 +37,6 @@ class List extends Component{
         const newArr = cloneArr.filter((item,i)=>{
             return i !== index;
         });
-        console.log(this);
         this.setState({
             INITIAL_DATA:newArr,
         })
@@ -71,6 +74,7 @@ class List extends Component{
                 <RenderItem
                 value={this.state.INITIAL_DATA}
                 onDelete={this.onDelete}
+                completeItem={ this.completeItem }
                 >
 
                 </RenderItem>
@@ -86,8 +90,9 @@ const Delete = ({className,children,onClick}) =>{
 
 };
 
-const Complete = ({classN,children}) =>
+const Complete = ({classN,children,onClick}) =>
     <button className={classN}
+            onClick={onClick}
     >{children}</button>;
 
 const Search = ({value, onChange,children }) =>
@@ -111,7 +116,7 @@ const AddItem = ({ value, onChange, children, onKeyPress }) => {
     )
 };
 
-const RenderItem = ({value, onDelete})=>{
+const RenderItem = ({value, onDelete, completeItem })=>{
     return(
         <div className='todos__box'>
             <div className="todos__header">
@@ -120,8 +125,9 @@ const RenderItem = ({value, onDelete})=>{
             </div>
             {
                 value.map((item,index)=>{
-
                     const deleteItem = () => onDelete(index);
+                    const completeItems = () => completeItem(index);
+
                     return(
                         <div className="todos__box-item" key={index}>
                             <h3>
@@ -130,7 +136,7 @@ const RenderItem = ({value, onDelete})=>{
                             <span>{index}</span>
                             <div className="box_action">
                                 <Delete className='delete' onClick={deleteItem}>-</Delete>
-                                <Complete classN='complete'>+</Complete>
+                                <Complete classN='complete' onClick={completeItems}>+</Complete>
                             </div>
                         </div>
                     )
